@@ -6,6 +6,7 @@ function Quiz() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (qid: string, option: string) => {
     setAnswers({ ...answers, [qid]: option });
@@ -18,7 +19,7 @@ function Quiz() {
     }
 
     try {
-      await fetch("http://localhost:3000/api/submit", {
+      await fetch(`${API_URL}/api/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
